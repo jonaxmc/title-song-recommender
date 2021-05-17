@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+
+<div class="contenedor-index">
+  <img class="img-ai" src="{{url_for('static', filename='fondo.png')}}">
+  <main class="container" onload="myFunction()">
+
+
+    <div class="starter-template text-center py-5 px-3">
+
+      {% if error %}
+      <div class="alert alert-danger" role="alert">
+        {{error}}
+      </div>
+      {% endif %}
+      <form action="/upload" method="POST" enctype="multipart/form-data">
+        <div id="upload-area" class="form">
+          <div class="upload-ui">
+            <div class="titulo">Arrastra y suelta un archivo </div>
+            <div class="titulo">de audio</div>
+            <p class="titulo">o</p>
+            <input id="input-upload" class="input-upload" type="file" name="archivo" multiple>
+            <button id="btn-upload" type="button" class="btn-secundario">ELEGIR ARCHIVO</button>
+            <div id="file-name" class="file-name"></div>
+
+
+
+          </div>
+
+        </div>
+        <div id="loading"></div>
+        <input class="btn-enviar btn-primario" type="submit" onclick="loading();" value="ENVIAR">
+
+
+      </form>
+
+    </div>
+
+    <script type="text/javascript">// <![CDATA[
+      function loading() {
+
+        $("#loading").show();
+        $("#content").hide();
+      }
+// ]]></script>
+
+    <script>
+
+
+
+    </script>
+
+
+    <script type="text/javascript">
+      function myFunction() {
+        alert("Page is loaded");
+      }
+    </script>
+
+  </main>
+</div>
+
+
+{% endblock %}

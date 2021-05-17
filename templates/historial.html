@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<div class="figura-historial">
+    <figure class="highcharts-figure figura-similitud">
+        <div id="container"></div>
+        <p class="highcharts-description">
+
+        </p>
+    </figure>
+
+</div>
+
+<div id="container-historial">
+    <div class="contenedor-centrar">
+        <a class="btn-primario a-btn" href="/" role="button">PROBAR CON OTRA CANCIÓN</a>
+    </div>
+    <div class="contenedor-centrar">
+        <a class="btn-secundario a-btn" href="javascript:history.back()" role="button">VOLVER A LA PÁGINA ANTERIOR</a>
+    </div>
+</div>
+
+{% endblock %}

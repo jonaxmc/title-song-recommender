@@ -1,0 +1,133 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+<div class="contenedor-encabezado"></div>
+<div class="data">
+    <div class="data-titulo">{{original}}</div>
+    <div class="data-subtitulo">{{subtitle}}</div>
+    <div class="data-tipoAPI">Recuperado de {{tipoAPI}}</div>
+</div>
+<div class="titulo-recomendado">Título recomendado: {{titulo_predicho}}</div>
+
+<img class="caratula" src={{caratula}}>
+<div class="container-md contenedor-datos">
+    <div class="row">
+        <h1 class="div-letra">LETRA</h1>
+        <div class="col-sm-5 col-md-6 letra">
+            {% if cond %}
+            <p>{{x}}</p>
+            {% else %}
+            {% for elemento in x %}
+            {{ elemento }}<br>
+            {% endfor %}
+            {% endif %}
+        </div>
+        <div class="col-sm-5 col-md-6">
+            <div class="row">
+            </div>
+            <div class="row">
+                <table class="table table-striped table-hover">
+                    <thead class="table-dark">
+                        <tr>
+                            <th scope="col">Tokens Recomendados</th>
+                            <th scope="col">Frecuencia</th>
+                            <th scope="col">Polaridad</th>
+                            <th scope="col">Pesos</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for envio in range(historial["palabras_predichas"]|count) %}
+                        <tr>
+                            <td> {{ historial["palabras_predichas"][envio] }} </td>
+                            <td> {{ historial["frecuencia"][envio] }} </td>
+                            <td> {{ historial["sentimientos"][envio] }} </td>
+                            <td> {{ historial["pesos_topico"][envio] }} </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+
+            </div>
+
+            
+          
+
+            <button class="tablink tab1" onclick="openPage('Frecuencia', this, '#5e60ce')" id="defaultOpen">Frecuencia</button>
+            <button class="tablink tab2" onclick="openPage('Polaridad', this, '#5e60ce')" >Polaridad</button>
+            <button class="tablink tab3" onclick="openPage('Nube', this, '#5e60ce')" >Nube de Palabras</button>
+
+
+            <div id="Frecuencia" class="tabcontent">
+                <figure class="highcharts-figure">
+                    <div id="tabla-hi-frecuencia"></div>
+                </figure>
+            </div>
+
+            <div id="Polaridad" class="tabcontent">
+                <figure class="highcharts-figure">
+                    <div id="tabla-hi"></div>
+                </figure>
+            </div>
+            <div id="Nube" class="tabcontent">
+                <figure class="highcharts-figure">
+                    <div id="tabla-nube"></div>
+                    
+                  </figure>
+            </div>
+
+            
+
+           
+        </div>
+    </div>
+
+</div>
+
+<div class="contenedor-centrar">
+    <a class="btn-primario a-btn" href="/" role="button">PROBAR CON OTRA CANCIÓN</a>
+</div>
+
+<script>
+    let array = {};
+    array["canciones"] = [];
+    var json = sessionStorage.getItem("historialJSON");
+    var obj = JSON.parse(json);
+    var datos = '{{ historial }}';
+    var buscar = "&#39;"
+    datos = datos.replace(new RegExp(buscar, "g"), '"');
+    datos = JSON.parse(datos);
+    console.log('DATOS CONSOLE', datos)
+    if (obj == null) {
+        array["canciones"].push(datos);
+        sessionStorage.setItem("historialJSON", JSON.stringify(array));
+    } else {
+        obj["canciones"].push(datos);
+        sessionStorage.setItem("historialJSON", JSON.stringify(obj));
+    }
+
+</script>
+
+<script>
+    function openPage(pageName, elmnt, color) {
+        var i, tabcontent, tablinks;
+        tabcontent = document.getElementsByClassName("tabcontent");
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+        }
+        tablinks = document.getElementsByClassName("tablink");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].style.backgroundColor = "";
+        }
+        document.getElementById(pageName).style.display = "block";
+        elmnt.style.backgroundColor = color;
+    }
+
+    // Get the element with id="defaultOpen" and click on it
+    document.getElementById("defaultOpen").click();
+</script>
+<script src="https://code.highcharts.com/modules/wordcloud.js"></script>
+
+
+
+{% endblock %}

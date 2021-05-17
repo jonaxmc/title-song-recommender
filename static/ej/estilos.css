@@ -1,0 +1,391 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&display=swap');
+
+:root {
+  --color-primario: #5e60ce;
+  --color-secundario: #EBEBF9;
+  --color-terciario:#C3FDEE;
+}
+
+body{
+
+}
+
+
+.titulo{
+  font-family: 'Manrope', sans-serif;
+  font-weight: 800;
+  font-size: 40px;
+  color: #474A57;
+}
+
+.form {
+  width: 100%;
+  max-width: 700px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.upload-ui {
+  margin-top:7%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  border: 3px dashed #5D6D7E;
+  padding: 20px 0;
+  border-radius: 10px;
+  color: #000000;
+
+
+}
+.upload-ui img {
+  width: 100px;
+}
+.upload-ui h2 {
+
+  font-size: 1.5rem;
+  letter-spacing: 1px;
+  text-align: center;
+}
+.upload-ui p {
+  margin: 8px 0;
+  font-size: 1.25rem;
+}
+.input-upload {
+  display: none;
+}
+
+.file-name {
+  margin-top: 10px;
+  font-size: 1rem;
+}
+.dragover {
+  background-color: rgba(0, 0, 0, .2);
+}
+
+.btn-enviar{
+  position:relative;
+  margin-top:20px;
+  padding:10px;
+
+}
+
+div#loading {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  width: 220px;
+  height: 20px;
+  display: none;
+  background: url(/static/ajax-loader.gif) no-repeat;
+  cursor: wait;
+  margin: 0 auto;
+  margin-top:15px;
+}
+
+
+.btn-historial{
+  font-family: 'Manrope', sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  border: none;
+  color: var(--color-primario);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 10px 20px 10px 20px;
+  background: #ffffff;
+  border-radius: 6px;
+  flex: none;
+  order: 2;
+  align-self: flex-start;
+  flex-grow: 0;
+  margin: 0px 50px;
+}
+
+
+
+
+.nav-menu{
+  background-color: var(--color-primario);
+}
+
+.btn-secundario{
+  font-family: 'Manrope', sans-serif;
+  font-style: normal;
+  font-weight: 800;
+  font-size: 14px;
+  line-height: 18px;
+  border: none;
+  color: var(--color-primario);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 10px 20px 10px 20px;
+  background: var(--color-secundario);
+  border-radius: 6px;
+  flex: none;
+}
+
+
+
+.btn-primario{
+  font-family: 'Manrope', sans-serif;
+  font-style: normal;
+  font-weight: 800;
+  font-size: 14px;
+  line-height: 18px;
+  border: none;
+  color: #ffffff;
+  flex-direction: row;
+  align-items: center;
+  padding: 10px 20px 10px 20px;
+  background: var(--color-primario);
+  border-radius: 6px;
+  text-align: center;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  font-feature-settings: 'salt' on, 'liga' off;
+  margin-bottom: 10px;
+}
+
+.semi-circulo {
+  position: absolute;
+  top: 70%;
+  left: 25%;
+  width: 50%;
+  height: 100%;
+  background: var(--color-primario);
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
+  flex-direction: row;
+  align-items: center;
+}
+
+.img-ai{
+  position: absolute;
+  width: 100%;
+  bottom: 0px;
+}
+
+
+.title-logo{
+  font-family: 'Manrope', sans-serif;
+  font-style: normal;
+  font-weight: 800;
+  font-size: 16px;
+  text-decoration:none;
+  color: #ffffff;
+  margin-left: 50px;
+}
+
+.title-logo:hover{
+  color:#ffffff;
+}
+
+.triangulo{
+  position: absolute;
+  left: -0.07%;
+  right: 0%;
+  top: 30.42%;
+  bottom: 0%;
+  background: #1E1E1E;
+}
+
+.figura{
+  position:absolute;
+  bottom: -25%;
+
+}
+
+.letra{
+  font-family: 'Manrope', sans-serif;
+  color:#969BAB;
+  font-weight: 500;
+  font-size: 16px;
+  text-align: justify;
+}
+
+.contenedor-datos{
+  margin-top:300px;
+  margin-bottom:100px;
+}
+
+.caratula{
+  width:170px;
+  border-radius: 20px;
+  position:absolute;
+  z-index: 1;
+  top:75px;
+  left: 55px;
+  -webkit-box-shadow: 3px 3px 5px -1px rgba(0,0,0,0.68);
+  box-shadow: 3px 3px 5px -1px rgba(0,0,0,0.68);
+}
+
+.contenedor-encabezado{
+  position: absolute;
+  width: 100%;
+  height: 200px;
+  background: var(--color-primario);
+  z-index: 0;
+  top: 0px;
+}
+
+.data{
+  position: absolute;
+  color:#ffffff;
+  font-family: 'Manrope', sans-serif;
+  z-index: 2;
+  top:100px;
+  left: 250px;
+  line-height: 30px;
+}
+
+.data-titulo{
+  font-weight: 800;
+  font-size: 30px;
+}
+.data-subtitulo{
+  font-weight: 400;
+  font-size: 18px;
+}
+.data-tipoAPI{
+  font-weight: 200;
+  font-size: 16px;
+}
+
+.div-letra{
+  font-family: 'Manrope', sans-serif;
+  font-weight: 800;
+  font-size: 24px;
+}
+
+.titulo-recomendado{
+  font-family: 'Manrope', sans-serif;
+  left: 250px;
+  color:#2F3067;
+  position:absolute;
+  top: 200px;
+  font-weight: 800;
+  font-size: 30px;
+}
+
+a{
+  text-decoration: none;
+}
+a:hover{
+  color: var(--color-primario);
+}
+
+.figura-similitud{
+  width: 90%
+}
+
+.file-name{
+  font-family: 'Manrope', sans-serif;
+  color:#969BAB;
+  font-weight: 500;
+  font-size: 16px;
+  text-align: justify;
+}
+.texto{
+  margin-top: 30px;
+  margin-bottom: 40px;
+  font-family: 'Manrope', sans-serif;
+  color:#969BAB;
+  font-weight: 700;
+  font-size: 20px;
+  text-align: justify;
+}
+
+.contenedor-centrar{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.figura-historial{
+  margin-top: 7%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.a-btn:hover{
+  color: #ffffff;
+}
+
+.img-oh-no{
+  width: 25%;
+  margin-right: 30px;
+}
+
+.container-historial{
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+
+
+
+* {box-sizing: border-box}
+
+/* Set height of body and the document to 100% */
+body, html {
+  height: 100%;
+  margin: 0;
+  font-family: Arial;
+}
+
+/* Style tab links */
+.tablink {
+  background-color: #C3C3ED;
+  color: white;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  font-size: 17px;
+  width: 33%;
+}
+.tab1{
+  border-top-left-radius: 25px;
+}
+.tab3{
+  border-top-right-radius: 25px;
+}
+
+.tablink:hover {
+  background-color: #777;
+}
+
+/* Style the tab content (and add height:100% for full page content) */
+.tabcontent {
+  color: black;
+  display: none;
+  padding: 100px 20px;
+  height: 100%;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
