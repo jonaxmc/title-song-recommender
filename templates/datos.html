@@ -2,93 +2,115 @@
 
 {% block body %}
 
-<div class="contenedor-encabezado"></div>
-<div class="data">
-    <div class="data-titulo">{{original}}</div>
-    <div class="data-subtitulo">{{subtitle}}</div>
-    <div class="data-tipoAPI">Recuperado de {{tipoAPI}}</div>
-</div>
-<div class="titulo-recomendado">Título recomendado: {{titulo_predicho}}</div>
+<body style="background:#EBEBF9">
+    <div class="contenedor-encabezado"></div>
+    <div class="data">
+        <div class="data-titulo">{{original}}</div>
+        <div class="data-subtitulo">{{subtitle}}</div>
+        <div class="data-tipoAPI">Retrieved from {{tipoAPI}}</div>
+    </div>
+    <div class="titulo-recomendado"><span style="color: #7B7C89;">Recommended Title:</span> {{titulo_predicho}}</div>
 
-<img class="caratula" src={{caratula}}>
-<div class="container-md contenedor-datos">
-    <div class="row">
-        <h1 class="div-letra">LETRA</h1>
-        <div class="col-sm-5 col-md-6 letra">
-            {% if cond %}
-            <p>{{x}}</p>
-            {% else %}
-            {% for elemento in x %}
-            {{ elemento }}<br>
-            {% endfor %}
-            {% endif %}
+    <img class="caratula" src={{caratula}}>
+    <div class="container-md contenedor-datos">
+        <div class="row">
+            <h1 class="div-letra">Lyrics</h1>
+            <div class="col-sm-5 col-md-6 letra">
+                {% if cond %}
+                <p>{{x}}</p>
+                {% else %}
+                {% for elemento in x %}
+                {{ elemento }}<br>
+                {% endfor %}
+                {% endif %}
+            </div>
+            <div class="col-sm-5 col-md-6">
+                <div class="row">
+                </div>
+                <div class="row">
+
+                    <table class="table table-striped table-hover">
+                        <thead class="table-dark">
+                            <tr>
+                                <th scope="col">Recommended Tokens </th>
+                                <th scope="col">Frequency </th>
+                                <th scope="col">Polarity</th>
+                                <th scope="col">LDA Weight</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for envio in range(historial["palabras_predichas"]|count) %}
+                            <tr>
+                                <td> {{ historial["palabras_predichas"][envio] }} </td>
+                                <td> {{ historial["frecuencia"][envio] }} </td>
+                                <td> {{ historial["sentimientos"][envio]['compound'] }} </td>
+                                <td> {{ historial["pesos_topico"][envio] }} </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+
+                    <div class="tabs">
+                        <input type="radio" id="tab1" name="tab-control" checked>
+                        <input type="radio" id="tab2" name="tab-control">
+                        <input type="radio" id="tab3" name="tab-control">
+                        <ul>
+                            <li title="Features"><label for="tab1" role="button"><span>Frequency</span></label></li>
+                            <li title="Delivery Contents"><label for="tab2" role="button"><span>Polarity</span></label>
+                            </li>
+                            <li title="Delivery Contents"><label for="tab3" role="button"><span>Word
+                                        Cloud</span></label></li>
+                        </ul>
+                        <div class="slider">
+                            <div class="indicator"></div>
+                        </div>
+                        <div class="content">
+                            <section>
+                                <div id="Frecuencia">
+                                    <figure class="highcharts-figure">
+                                        <div id="tabla-hi-frecuencia"></div>
+                                    </figure>
+                                </div>
+                            </section>
+                            <section>
+                                <div id="Polaridad">
+                                    <figure class="highcharts-figure">
+                                        <div id="tabla-hi"></div>
+                                    </figure>
+                                </div>
+                            </section>
+                            <section>
+                                <div id="Nube">
+                                    <figure class="highcharts-figure">
+                                        <div id="tabla-nube"></div>
+
+                                    </figure>
+                                </div>
+                            </section>
+                        </div>
+                    </div>
+
+                </div>
+
+               
+
+
+
+
+
+
+
+
+            </div>
         </div>
-        <div class="col-sm-5 col-md-6">
-            <div class="row">
-            </div>
-            <div class="row">
-                <table class="table table-striped table-hover">
-                    <thead class="table-dark">
-                        <tr>
-                            <th scope="col">Tokens Recomendados</th>
-                            <th scope="col">Frecuencia</th>
-                            <th scope="col">Polaridad</th>
-                            <th scope="col">Pesos</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for envio in range(historial["palabras_predichas"]|count) %}
-                        <tr>
-                            <td> {{ historial["palabras_predichas"][envio] }} </td>
-                            <td> {{ historial["frecuencia"][envio] }} </td>
-                            <td> {{ historial["sentimientos"][envio] }} </td>
-                            <td> {{ historial["pesos_topico"][envio] }} </td>
-                        </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
 
-            </div>
-
-            
-          
-
-            <button class="tablink tab1" onclick="openPage('Frecuencia', this, '#5e60ce')" id="defaultOpen">Frecuencia</button>
-            <button class="tablink tab2" onclick="openPage('Polaridad', this, '#5e60ce')" >Polaridad</button>
-            <button class="tablink tab3" onclick="openPage('Nube', this, '#5e60ce')" >Nube de Palabras</button>
-
-
-            <div id="Frecuencia" class="tabcontent">
-                <figure class="highcharts-figure">
-                    <div id="tabla-hi-frecuencia"></div>
-                </figure>
-            </div>
-
-            <div id="Polaridad" class="tabcontent">
-                <figure class="highcharts-figure">
-                    <div id="tabla-hi"></div>
-                </figure>
-            </div>
-            <div id="Nube" class="tabcontent">
-                <figure class="highcharts-figure">
-                    <div id="tabla-nube"></div>
-                    
-                  </figure>
-            </div>
-
-            
-
-           
-        </div>
     </div>
 
-</div>
+    <div class="contenedor-centrar">
+        <a class="btn-primario a-btn" href="/" role="button">TRY ANOTHER SONG </a>
+    </div>
 
-<div class="contenedor-centrar">
-    <a class="btn-primario a-btn" href="/" role="button">PROBAR CON OTRA CANCIÓN</a>
-</div>
-
-<script>
+    <!-- <script>
     let array = {};
     array["canciones"] = [];
     var json = sessionStorage.getItem("historialJSON");
@@ -106,27 +128,17 @@
         sessionStorage.setItem("historialJSON", JSON.stringify(obj));
     }
 
-</script>
+</script> -->
 
-<script>
-    function openPage(pageName, elmnt, color) {
-        var i, tabcontent, tablinks;
-        tabcontent = document.getElementsByClassName("tabcontent");
-        for (i = 0; i < tabcontent.length; i++) {
-            tabcontent[i].style.display = "none";
-        }
-        tablinks = document.getElementsByClassName("tablink");
-        for (i = 0; i < tablinks.length; i++) {
-            tablinks[i].style.backgroundColor = "";
-        }
-        document.getElementById(pageName).style.display = "block";
-        elmnt.style.backgroundColor = color;
-    }
 
-    // Get the element with id="defaultOpen" and click on it
-    document.getElementById("defaultOpen").click();
-</script>
-<script src="https://code.highcharts.com/modules/wordcloud.js"></script>
+
+    <script src="https://code.highcharts.com/modules/wordcloud.js"></script>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+    <script src="/static/guardar_historial.js"></script>
+
+</body>
+
+
 
 
 

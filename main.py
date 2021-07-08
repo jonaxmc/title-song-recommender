@@ -1,4 +1,4 @@
-import os
+
 from flask import Flask, render_template, request, jsonify, flash
 from werkzeug.utils import secure_filename
 from ShazamAPI import Shazam
@@ -6,14 +6,15 @@ from lyrics_extractor import SongLyrics
 import glob
 import nltk
 from topic_modeling import clean_tweet
-from os import remove
+import os, os.path
+
 
 nltk.download('punkt')
 from nltk.corpus import stopwords  # to get rid of StopWords
 
 nltk.download('stopwords')
 stop_words = stopwords.words('english')
-# instancia del objeto Flask
+# instancia del objeto Flask 
 app = Flask(__name__)
 # Carpeta de subida
 app.config['UPLOAD_FOLDER'] = './archivos'
@@ -31,7 +32,7 @@ def upload_file():
 @app.route('/barras')
 def barras():
     global datos
-    info = {"prediccion": datos,"path":path}
+    info = {"prediccion": datos}
     return jsonify(info)
 
 @app.route('/historial')
@@ -44,25 +45,26 @@ def uploader():
         # obtenemos el archivo del input "archivo"
         f = request.files['archivo']
         filename = secure_filename(f.filename)
+        print("F ", filename)
         # Guardamos el archivo en el directorio "Archivos PDF"
         f.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-        print("archivo_", filename)
+        #print("archivo_", filename)
         # Retornamos una respuesta satisfactoria
         targetPattern = r"./archivos/*.mp3"
         archivos = glob.glob(targetPattern)
-        print(archivos)
+        #print(archivos)
         mp3_file_content_to_recognize = open("./archivos/" + filename,
                                              'rb').read()
 
         shazam = Shazam(mp3_file_content_to_recognize)
         global path
-        path = './archivos/"' + filename
+        path = './archivos/' + filename
         
         try:
           recognize_generator = shazam.recognizeSong()
         except:
           pass
-        print(recognize_generator)
+        #print(recognize_generator)
         try:
             contenido = next(recognize_generator)
         except:
@@ -107,11 +109,19 @@ def uploader():
             tipoAPI = "Web Scrapping - Song Lyrics"
         letraCancion = str(letraCancion)
         resultados = clean_tweet(letraCancion,NOMBRE_ORIGINAL,separacion[1])
-        print("resultados SENTIMIENTOS: ",resultados["palabras"])
-        print('HISTORIAL VS', resultados["historial"])
+        #print("resultados SENTIMIENTOS: ",resultados["palabras"])
+        #print('HISTORIAL VS', resultados["historial"])
         global datos
         datos = resultados
-        
+
+        global historial
+        historial = resultados['historial']
+        print("Proceso terminado")
+        print(path)
+        try:
+          os.remove(path)
+        except OSError as e:
+          print(f"Error:{ e.strerror}")
         return render_template("datos.html",
                                titulo="DATOS EXITOSOS",
                                x=letraWeb,

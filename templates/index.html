@@ -18,11 +18,10 @@
       <form action="/upload" method="POST" enctype="multipart/form-data">
         <div id="upload-area" class="form">
           <div class="upload-ui">
-            <div class="titulo">Arrastra y suelta un archivo </div>
-            <div class="titulo">de audio</div>
-            <p class="titulo">o</p>
+            <div class="titulo">Drag and drop audio file here</div>
+            <p class="titulo">OR</p>
             <input id="input-upload" class="input-upload" type="file" name="archivo" multiple>
-            <button id="btn-upload" type="button" class="btn-secundario">ELEGIR ARCHIVO</button>
+            <button id="btn-upload" type="button" class="btn-secundario">CHOOSE FILE</button>
             <div id="file-name" class="file-name"></div>
 
 
@@ -31,7 +30,7 @@
 
         </div>
         <div id="loading"></div>
-        <input class="btn-enviar btn-primario" type="submit" onclick="loading();" value="ENVIAR">
+        <input class="btn-enviar btn-primario" type="submit" onclick="loading();" value="SUBMIT">
 
 
       </form>
@@ -53,11 +52,6 @@
     </script>
 
 
-    <script type="text/javascript">
-      function myFunction() {
-        alert("Page is loaded");
-      }
-    </script>
 
   </main>
 </div>

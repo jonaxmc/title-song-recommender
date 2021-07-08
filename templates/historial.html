@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block body %}
-<div class="figura-historial">
+<!-- <div class="figura-historial">
     <figure class="highcharts-figure figura-similitud">
         <div id="container"></div>
         <p class="highcharts-description">
@@ -9,15 +9,83 @@
         </p>
     </figure>
 
-</div>
+</div> -->
 
-<div id="container-historial">
-    <div class="contenedor-centrar">
-        <a class="btn-primario a-btn" href="/" role="button">PROBAR CON OTRA CANCIÓN</a>
+<body style="background:#EBEBF9 none repeat scroll 0 0;
+color: #222;
+font-size: 100%;
+line-height: 24px;
+margin: 0;
+padding:0;
+font-family: 'Raleway',sans-serif;"></body>
+<section>
+    <div class="rt-container">
+        <div class="col-rt-12">
+            <div class="Scriptcontent">
+
+                <!-- Start Tabs HTML -->
+                <div class="tabs">
+                    <input type="radio" id="tab1" name="tab-control" checked>
+                    <input type="radio" id="tab2" name="tab-control">
+                  
+                    <ul>
+                        <li title="Features"><label for="tab1" role="button"><span>Similarity Jaccard with Semantics </span></label></li>
+                        <li title="Delivery Contents"><label for="tab2" role="button"><span>Similarity Jaccard without Semantics </span></label></li>
+                     
+                    </ul>
+                    <div class="slider" id="tab-dos">
+                        <div class="indicator"></div>
+                    </div>
+                    <div class="content"> 
+                        <section>
+                            <div class="figura-historial">
+                                <figure class="highcharts-figure figura-similitud">
+                                    <div id="similitud1"></div>
+                                    <p class="highcharts-description">
+
+                                    </p>
+                                </figure>
+
+                            </div>
+                        </section>
+                        <section>
+                            <div class="figura-historial">
+                                <figure class="highcharts-figure figura-similitud">
+                                    <div id="container"></div>
+                                    <p class="highcharts-description">
+
+                                    </p>
+                                </figure>
+
+                            </div>
+                        </section>
+                       
+                    </div>
+                </div>
+                <!-- End Tabs HTML -->
+
+            </div>
+
+            <div id="container-historial">
+                <div class="contenedor-centrar">
+                    <a class="btn-primario a-btn" href="/" role="button">TRY ANOTHER SONG</a>
+                </div>
+                <div class="contenedor-centrar">
+                    <a class="btn-secundario a-btn" href="javascript:history.back()" role="button">RETURN TO THE PREVIOUS PAGE 
+                    </a>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="contenedor-centrar">
-        <a class="btn-secundario a-btn" href="javascript:history.back()" role="button">VOLVER A LA PÁGINA ANTERIOR</a>
-    </div>
-</div>
+
+
+</section>
+
+
+
+<!-- Analytics -->
+
+
+
 
 {% endblock %}
