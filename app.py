@@ -141,5 +141,5 @@ def uploader():
 if __name__ == '__main__':
     # Iniciamos la aplicación
     # app.run(port=8080, debug=True)
-    # app.run()
-    app.run(host='0.0.0.0',port=5000)
+    app.run()
+    # app.run(host='0.0.0.0',port=5000)
