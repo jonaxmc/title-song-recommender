@@ -41,6 +41,8 @@ def historial():
 
 @app.route("/upload", methods=['GET','POST'])
 def uploader():
+  try:
+    
     if request.method == 'POST':
         # obtenemos el archivo del input "archivo"
         f = request.files['archivo']
@@ -136,7 +138,8 @@ def uploader():
                                historial= resultados["historial"]
                                )
 
-
+  except Exception as e:
+        return str(e)
 
 if __name__ == '__main__':
     # Iniciamos la aplicación
